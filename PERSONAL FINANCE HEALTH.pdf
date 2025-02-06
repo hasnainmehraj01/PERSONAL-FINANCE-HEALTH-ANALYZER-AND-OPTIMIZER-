@@ -42,14 +42,14 @@ Admin- with admin privilege all privilege.
 Implementation
  In order to design the structure to this project and generate analysis based on the data, here are the steps of implementation for this project.
  Step 01: creating database and creating the necessary tables.
-• Show database.
+â€¢ Show database.
 > Show databases;
-• Create Database:
+â€¢ Create Database:
 > CREATE DATABASE Personal_Finance_Health;
-• Use database.
+â€¢ Use database.
 > use personal_finance_health; 
 Table: 01 
-• Users Table
+â€¢ Users Table
 CREATE TABLE Users (
 User_ID INT PRIMARY KEY AUTO_INCREMENT,
 Username VARCHAR(50) NOT NULL UNIQUE,
@@ -59,7 +59,7 @@ Unique(username)
 );
  
 Table: 02
-• Income Table
+â€¢ Income Table
 CREATE TABLE Income (
 Income_ID INT PRIMARY KEY AUTO_INCREMENT,
 User_ID INT,
@@ -70,7 +70,7 @@ FOREIGN KEY (User_ID) REFERENCES Users(User_ID) ON DELETE CASCADE
 );
  
 Table: 03
-• Expenses Table
+â€¢ Expenses Table
 CREATE TABLE Expenses (
 Expense_ID INT PRIMARY KEY AUTO_INCREMENT,
 User_ID INT,
@@ -81,7 +81,7 @@ FOREIGN KEY (User_ID) REFERENCES Users(User_ID) ON DELETE CASCADE
 );
  
 Table: 04
-• Savings Table
+â€¢ Savings Table
 CREATE TABLE Savings (
 Saving_ID INT PRIMARY KEY AUTO_INCREMENT,
 User_ID INT,
@@ -92,7 +92,7 @@ FOREIGN KEY (User_ID) REFERENCES Users(User_ID) ON DELETE CASCADE
 );
  
 Table: 05
-• Investments Table
+â€¢ Investments Table
 CREATE TABLE Investments (
 Investment_ID INT PRIMARY KEY AUTO_INCREMENT,
 User_ID INT,
@@ -102,7 +102,7 @@ Return_rate DECIMAL(5,2) NOT NULL,
 Date DATE NOT NULL,
 FOREIGN KEY (User_ID) REFERENCES Users(User_ID) ON DELETE CASCADE
 ); Table: 06
-• Debts Table
+â€¢ Debts Table
 CREATE TABLE Debts (
 Debt_ID INT PRIMARY KEY AUTO_INCREMENT,
 User_ID INT,
@@ -114,7 +114,7 @@ FOREIGN KEY (User_ID) REFERENCES Users(User_ID) ON DELETE CASCADE
 );
  
 Table: 07
-• Financial Health Table
+â€¢ Financial Health Table
 CREATE TABLE FinancialHealth (
 Health_ID INT PRIMARY KEY AUTO_INCREMENT,
 User_ID INT,
@@ -231,7 +231,7 @@ MYSQL> Select users.user_id, (sum(income.amount) - sum(expense.amount) - sum(deb
 
 
 Requirment 04: Budget Optimization - In this requirement the users will be provided the average spending in based on expenses
-MYSQL> SELECT users.user_name, expense.category, avg(expense.amount) as AVG_Spending from expense inner join Users on users.user_id = expense.user_id group by users.user_id  Expense.category having AVG_Spending > (Select avg(amount) from expense where category = ‘Entertainment’);
+MYSQL> SELECT users.user_name, expense.category, avg(expense.amount) as AVG_Spending from expense inner join Users on users.user_id = expense.user_id group by users.user_id  Expense.category having AVG_Spending > (Select avg(amount) from expense where category = â€˜Entertainmentâ€™);
 
 
 Requirment 05: Calculating savings growth rate 
@@ -241,14 +241,14 @@ sys
 
 Implementation
 Step 04: User Permissions
-Ø	Create user ‘admin’@’localhost’ identified by ‘admin123’;
-Ø	Show grants for ‘admin’@’localhost’;
+Ã˜	Create user â€˜adminâ€™@â€™localhostâ€™ identified by â€˜admin123â€™;
+Ã˜	Show grants for â€˜adminâ€™@â€™localhostâ€™;
  
-Ø	Grant all privileges on personalfinancehealth .* to ‘admin’@’localhost’ with grant option;
-Ø	Select users, host from mysql user;
-Ø	create user 'user'@'localhost' identified by'user123';
-Ø	grant select on personalfinancehealth.* to 'user'@'localhost';
-Ø Show grants for ‘users’@’localhost’;
+Ã˜	Grant all privileges on personalfinancehealth .* to â€˜adminâ€™@â€™localhostâ€™ with grant option;
+Ã˜	Select users, host from mysql user;
+Ã˜	create user 'user'@'localhost' identified by'user123';
+Ã˜	grant select on personalfinancehealth.* to 'user'@'localhost';
+Ã˜ Show grants for â€˜usersâ€™@â€™localhostâ€™;
  
 
 Implementation
@@ -265,9 +265,9 @@ Mysql> select * from savings;
  
 Mysql> select * from income;
 Mysql> SAVEPOINT s1;
-Mysql> insert into income (User_id, source, amount, date) values (1, ‘Side-Hustle’, 9000, ‘2023-10-09’):
+Mysql> insert into income (User_id, source, amount, date) values (1, â€˜Side-Hustleâ€™, 9000, â€˜2023-10-09â€™):
 Mysql> SAVEPOINT s2;
-Mysql> update savings set amount=amount + 9000.00 where User_id =1 and Account_type = ‘Emergency Funds’;
+Mysql> update savings set amount=amount + 9000.00 where User_id =1 and Account_type = â€˜Emergency Fundsâ€™;
 Mysql> COMMIT;
  
 
